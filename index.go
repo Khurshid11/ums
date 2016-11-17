@@ -159,8 +159,6 @@ func UpdateProfile(res http.ResponseWriter, req *http.Request, _ httprouter.Para
 		r := db.Model(&user).Where("id = ?", id).Updates(User{FirstName: firstName, LastName: lastName, Email: mail, Country: country, UpdatedAt: time.Now()})
 		var data interface{}
 
-		//destroy session
-
 		session, err := store.Get(req, "email")
 
 		if err != nil {
