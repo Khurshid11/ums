@@ -13,6 +13,8 @@ import (
 	"strings"
 
 	"time"
+
+	//"container/list"
 )
 
 var db *gorm.DB
@@ -25,8 +27,8 @@ type User struct {
 	Email     string `gorm:"not null;unique"`
 	Password  string
 	Country   string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	CreatedAt string
+	UpdatedAt string
 }
 
 //noinspection ALL
@@ -155,9 +157,11 @@ func UpdateProfile(res http.ResponseWriter, req *http.Request, _ httprouter.Para
 		lastName := req.FormValue("lastName")
 		mail := req.FormValue("mail")
 		country := req.FormValue("country")
-
-		r := db.Model(&user).Where("id = ?", id).Updates(User{FirstName: firstName, LastName: lastName, Email: mail, Country: country, UpdatedAt: time.Now()})
+		dt := time.Now().Format("2006-01-02 15:04:05")
+		r := db.Model(&user).Where("id = ?", id).Updates(User{FirstName: firstName, LastName: lastName, Email: mail, Country: country, UpdatedAt: dt})
 		var data interface{}
+
+		//destroy session
 
 		session, err := store.Get(req, "email")
 
@@ -227,8 +231,9 @@ func NewUser(response http.ResponseWriter, req *http.Request, _ httprouter.Param
 				render(response, "registration.html")
 				return
 			}
+			dt := time.Now().Format("2006-01-02 15:04:05")
 
-			db.Create(&User{FirstName: firstName, LastName: lastName, Email: email, Password: password, Country: country, CreatedAt: time.Now(), UpdatedAt: time.Now()})
+			db.Create(&User{FirstName: firstName, LastName: lastName, Email: email, Password: password, Country: country, CreatedAt: dt, UpdatedAt: dt})
 
 			if db.NewRecord(&User{}) == true {
 				const msg = `
@@ -325,6 +330,55 @@ func getUser(req *http.Request) string {
 
 }
 
+
+
+func ViewUsers(res http.ResponseWriter,req *http.Request,_ httprouter.Params)  {
+
+	type UserList struct {
+		SlNo	int
+		Id 	int
+		FirstName string
+		LastName  string
+		UserEmail     string
+		Country   string
+		RegisteredDate string
+		//Name string
+
+	}
+
+	var user []User
+	r := db.Select("id,first_name,last_name,email,country,created_at").Find(&user)
+
+	nusers := r.RowsAffected
+
+
+
+	users := make([]UserList,nusers)
+
+
+
+
+	cnt :=1
+
+	for i, list := range user{
+		users[i].Id = list.ID
+		users[i].SlNo = cnt
+		users[i].FirstName=list.FirstName
+		users[i].LastName=list.LastName
+		users[i].UserEmail=list.Email
+		users[i].Country=list.Country
+		users[i].RegisteredDate=list.CreatedAt
+		cnt++
+
+		//fmt.Fprint(res,i,cnt)
+	}
+
+	//fmt.Fprint(res,users)
+	render(res,"userList.html",users)
+
+
+}
+
 /*func render(res http.ResponseWriter,fname string){
 	tmpl := fmt.Sprintf("template/%s",fname)
 	t, err := template.ParseFiles(tmpl)
@@ -411,6 +465,7 @@ func main() {
 	router.GET("/updatePswd", UpdatePassword)
 	router.POST("/updatePswd", UpdatePassword)
 
+	router.GET("/userList",ViewUsers)
 	router.ServeFiles("/assets/*filepath", http.Dir("template/assets"))
 
 	log.Fatal(http.ListenAndServe(":8000", router))
