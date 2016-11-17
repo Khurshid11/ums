@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Registration Form</title>
+
+
+    <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+</head>
+
+<body>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+<form action="/registerUser" method="post">
+<div class="login">
+    <div class="login-header">
+        <h2>Registration Form</h2>
+    </div>
+    <div class="login-form">
+
+        First Name: <input type="text" placeholder="First Name" name="firstName" required/><br>
+        Last Name: <input type="text" placeholder="Last Name" name="lastName"/><br>
+
+        Email Id: <input type="email" placeholder="abc@gmail.com" name="email" required/><br>
+
+        Password: <input type="password" placeholder="password" name="password"/>
+        <br>
+
+        Country: <input type="text" placeholder="India" name="country"/><br>
+        <br>
+        <input type="submit" value="Register" class="login-button"/>
+        <input type="reset" value="Reset" class="login-button"/>
+        <br><br>
+
+</div>
+   </div>
+</form>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+
+<script src="assets/js/index.js"></script>
+
+</body>
+</html>
