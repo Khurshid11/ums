@@ -8,7 +8,15 @@
   <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
 
       <link rel="stylesheet" href="assets/css/style.css">
+  <style type="text/css">
 
+
+            h5 {
+                color: orange;
+            }
+
+
+    </style>
   
 </head>
 
@@ -20,10 +28,10 @@
     <h1>Login</h1>
   </div>
   <div class="login-form">
-    <h3>Username:</h3>
+    <h3>Username: </h3><h5>{{.EmailError}}{{.EmailPasswordError}}</h5>
     <input type="text" placeholder="mailid@gmail.com" name="email" required/><br>
-    <h3>Password:</h3>
-    <input type="password" placeholder="Password" name="password"/>
+    <h3>Password:</h3><h5>{{.PasswordError}}</h5>
+    <input type="password" placeholder="Password" name="password" />
     <br>
     <input type="submit" value="Login" class="login-button"/>
     <br>

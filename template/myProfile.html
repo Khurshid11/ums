@@ -35,34 +35,7 @@
     </style>
 </head>
 <body>
-<div class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
 
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav ">
-                <li><a href="/profile">MyProfile</a></li>
-                <li><a href="/updatePswd">UpdatePassword</a></li>
-                <li><a href="/userList">User List</a></li>
-
-            </ul>
-            <ul class="nav navbar-nav pull-right">
-                <li>Welcome :</li>
-                <li>{{.UserEmail}}</li>
-            </ul><br>
-            <ul class="nav navbar-nav pull-right">
-                <li><a href="/login">Logout</a></li>
-            </ul>
-        </div>
-
-    </div>
-</div>
 <!-- NAVBAR CODE END -->
     <div class="nav navbar-nav text-center">
             <h4>{{.Message}}</h4>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -8,7 +9,7 @@
     <!--[if IE]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
-    <title>User List</title>
+    <title>User profile template</title>
     <!-- BOOTSTRAP STYLE SHEET -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT-AWESOME STYLE SHEET FOR BEAUTIFUL ICONS -->
@@ -26,7 +27,7 @@
                 text-decoration: none;
             }
 
-            th,td,h4 {
+            h4 {
                 text-align: center;
             }
 
@@ -34,34 +35,6 @@
     </style>
 </head>
 <body>
-<div class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav ">
-                <li><a href="/profile">MyProfile</a></li>
-                <li><a href="/updatePswd">UpdatePassword</a></li>
-                <li><a href="/userList">User List</a></li>
-
-            </ul>
-            <ul class="nav navbar-nav pull-right">
-                <li>Welcome :</li>
-
-            </ul><br>
-            <ul class="nav navbar-nav pull-right">
-                <li><a href="/login">Logout</a></li>
-            </ul>
-        </div>
-
-    </div>
-</div>
 <!-- NAVBAR CODE END -->
 <h4> List Of Users</h4>
 
@@ -70,8 +43,9 @@
         <section style="padding-bottom: 50px; padding-top: 50px;">
             <div class="row">
 
-               <table align="center" border="1">
-                   <tr >
+                <table class="table table-striped table-hover ">
+                   <thead>
+                    <tr >
                        <th>SlNo</th>
                         <th>UserId</th>
                        <th>First Name</th>
@@ -80,8 +54,10 @@
                        <th>Country</th>
                        <th>Registered On</th>
                    </tr>
+                    </thead>
+                   <tbody>
+                    {{range .}}
 
-                   {{range .}}
                    <tr>
                        <td>{{.SlNo}}</td>
                        <td>{{.Id}}</td>
@@ -91,8 +67,9 @@
                        <td>{{.Country}}</td>
                        <td>{{.RegisteredDate}}</td>
                    </tr>
-                   {{end}}
 
+                   {{end}}
+                   </tbody>
                </table>
             </div>
             <!-- ROW END -->

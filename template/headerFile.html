@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <title>User profile template</title>
+    <!-- BOOTSTRAP STYLE SHEET -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONT-AWESOME STYLE SHEET FOR BEAUTIFUL ICONS -->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE CSS -->
+    <style type="text/css">
+               .btn-social {
+            color: white;
+            opacity: 0.8;
+        }
+
+            .btn-social:hover {
+                color: white;
+                opacity: 1;
+                text-decoration: none;
+            }
+
+            h4 {
+                text-align: center;
+            }
+
+
+    </style>
+</head>
+<body>
+<div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav ">
+                <li><a href="/profile">MyProfile</a></li>
+                <li><a href="/updatePswd">UpdatePassword</a></li>
+                <li><a href="/userList">User List</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li>Welcome :</li>
+                <li>{{.UserEmail}}</li>
+            </ul><br>
+            <ul class="nav navbar-nav pull-right">
+                <li><a href="/login">Logout</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
