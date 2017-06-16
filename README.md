@@ -1,2 +1,2 @@
 # ums
-User management System
+A simple User management System in Go
